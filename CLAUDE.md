@@ -3,9 +3,10 @@
 A Krita plugin that records each Krita AI Diffusion generation and each layer edit in a document,
 then exports a PNG or JPEG with a signed C2PA manifest and a plain-language AI-use report. It is
 for artists who must disclose AI use, and it is the user's portfolio piece for provenance
-engineering, so correct, honest claims matter more than speed. The repository is named
-Claude-Credit-Repo; the project is krita-provenance and the package `krita_provenance`. Keep
-those names.
+engineering, so correct, honest claims matter more than speed. The repository is
+`KableMorrill/krita-provenance` on GitHub (renamed from Claude-Credit-Repo by the user on 19 Oct
+2026; the local checkout's folder keeps the old name), the project is krita-provenance and the
+package `krita_provenance`. Keep those names.
 
 **Read [docs/spec.md](docs/spec.md) before designing anything.** It is the source of truth for
 scope, the log format, the C2PA mapping, the threat model and the milestones. Requirement IDs
