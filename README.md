@@ -6,7 +6,8 @@ for artists who have to disclose AI use, such as on a US copyright application, 
 crowdfunding campaign, and it works alongside
 [Krita AI Diffusion](https://github.com/Acly/krita-ai-diffusion).
 
-> **Status: early development, heading for v0.1.** The plugin starts a provenance log in each
+> **Status: v0.1.0, an early release** ([release notes](docs/release-notes/v0.1.0.md)). The
+> plugin starts a provenance log in each
 > document it sees created or opened. With Krita AI Diffusion running, each result applied
 > from its history is recorded there; live painting, upscaling and control-layer results are
 > not observed yet. Under Tools ▸ Scripts it adds Provenance: Set Up Signing, which, after
@@ -24,6 +25,16 @@ crowdfunding campaign, and it works alongside
 > available on Intel Macs or Windows on ARM yet.
 
 `krita-provenance` is a working title.
+
+## Install
+
+Download `krita-provenance-<version>.zip` from the
+[Releases](https://github.com/KableMorrill/krita-provenance/releases) page. In Krita 5.3, choose
+Tools ▸ Scripts ▸ Import Python Plugin from File…, pick the zip, answer Yes to enable it, and
+restart Krita. Then run Tools ▸ Scripts ▸ Provenance: Set Up Signing: it asks before downloading
+the signing packages (about 92 MB on Windows, 19 MB elsewhere) and makes a signing certificate
+on your computer. Each release's page shows the zip's SHA-256 and how to check GitHub's
+attestation of where it was built.
 
 ## What a manifest will show, and what it won't
 

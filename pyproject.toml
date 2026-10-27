@@ -1,6 +1,6 @@
 [project]
 name = "krita-provenance"
-version = "0.1.0.dev0"  # keep equal to krita_provenance.__version__ (tests/test_version.py)
+version = "0.1.0"  # keep equal to krita_provenance.__version__ (tests/test_version.py)
 description = "Krita plugin that logs AI generations and layer edits and exports a signed C2PA manifest"
 readme = "README.md"
 license = "GPL-3.0-or-later"

@@ -355,9 +355,17 @@ test modules.
   regenerated, and all five samples read Valid in c2pa-rs 0.85.1 with every action. On 16 Oct
   the user uploaded them to Verify: no errors, and the actions show. The go/no-go note is due
   25 Oct 2026.
-- **Next:** M2, in the order the user chooses (spec: Milestones; C4 to C6, P2, D2 to D4, R1 to
-  R3, V2, V3, K2, K3, I3). Tagging and publishing v0.1 is the user's, whenever they want it.
-  LinkedIn posts continue (Claude may draft them; never posts).
+- **v0.1.0 released** at the user's request on 27 Oct 2026, from the state shown in the
+  LinkedIn demo. Tag `v0.1.0`; `.github/workflows/release.yml` runs on the tag push: it checks
+  the tag against `krita_provenance.__version__` and that `docs/release-notes/<tag>.md` exists,
+  runs the tests, builds the zip, attests its build provenance and publishes the GitHub Release
+  with the zip, its SHA-256 and how to verify the attestation. Right after the tag the version
+  moves on to `0.2.0.dev0`, so nothing built from later work claims to be 0.1.0. Releases stay
+  the user's call.
+- **Next: M2, one piece at a time, in the user's order** (27 Oct 2026): (1) reading credentials
+  from opened and placed images (C6, P2), (2) disclosure levels (D2 to D4), (3) bring-your-own
+  certificates (K2), (4) timestamps (K3), (5) the AI-use report (R1 to R3). LinkedIn posts
+  continue (Claude may draft them; never posts).
 
 ## Layout
 
@@ -394,7 +402,9 @@ tests/fixtures/images/     16x16 PNG and JPEG placeholders and a .kra-shaped zip
 docs/spec.md               the project spec
 docs/smoke-checklist.md    checks the user runs inside Krita
 docs/go-no-go.md           the go/no-go note that closed M0 (final: go, 27 Oct 2026)
+docs/release-notes/        one file per release, v<version>.md; the release workflow publishes it
 .github/workflows/ci.yml   CI on every push
+.github/workflows/release.yml  on a v* tag: test, build the zip, attest it, publish the release
 ```
 
 ## Commands
@@ -781,7 +791,8 @@ from the user. Everything else runs anywhere, including c2pa-python, c2patool
 - Keep "Where things stand" in this file current as work lands; the next session starts from it.
 - End each session with what works and how you checked it, what is unverified and why, choices
   you made provisionally, and questions for the user.
-- Don't open upstream issues or pull requests, publish releases or post anywhere; outreach and
-  Phase B are the user's.
+- Don't open upstream issues or pull requests, publish releases or post anywhere unless the
+  user asks (they asked for v0.1.0's release on 27 Oct 2026); outreach and Phase B are the
+  user's.
 - Commits with AI-written changes carry a `Co-Authored-By:` trailer that names the model (README:
   AI assistance).

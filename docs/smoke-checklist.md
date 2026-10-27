@@ -117,8 +117,8 @@ Settings ▸ Dockers ▸ Provenance Log turns the docker on; Krita keeps it on a
 
 | # | In Krita | Expected |
 | --- | --- | --- |
-| 38 | In the checkout, run `uv run python scripts/build_release.py`, then `uv run python scripts/dev_install.py --remove`. Remove the dev link first: Krita's importer replaces the folder it installs into, and the link points at this checkout. In Krita, Tools ▸ Scripts ▸ Import Python Plugin from File…, choose `dist\krita-provenance-0.1.0.dev0.zip` | Krita lists "Provenance (C2PA)" as imported and asks "Enable plugins now? (Requires restart)". Choose Yes and restart Krita |
-| 39 | Check Environment, then Set Up Signing | "krita-provenance 0.1.0.dev0" with no Problems section. Set Up Signing downloads nothing ("Already installed; nothing was downloaded.") and shows row 13's fingerprint: installing left the data folder alone |
+| 38 | In the checkout, run `uv run python scripts/build_release.py`, then `uv run python scripts/dev_install.py --remove`. Remove the dev link first: Krita's importer replaces the folder it installs into, and the link points at this checkout. In Krita, Tools ▸ Scripts ▸ Import Python Plugin from File…, choose `dist\krita-provenance-<version>.zip` | Krita lists "Provenance (C2PA)" as imported and asks "Enable plugins now? (Requires restart)". Choose Yes and restart Krita |
+| 39 | Check Environment, then Set Up Signing | "krita-provenance <version>" with no Problems section. Set Up Signing downloads nothing ("Already installed; nothing was downloaded.") and shows row 13's fingerprint: installing left the data folder alone |
 | 40 | Back to the checkout: quit Krita, delete `krita_provenance` and `krita_provenance.desktop` from `%APPDATA%\krita\pykrita`, run `uv run python scripts/dev_install.py`, start Krita | Check Environment works as before |
 
 ### Read-back kept in the log (decision of 18 Oct 2026)

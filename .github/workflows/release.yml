@@ -1,0 +1,68 @@
+name: Release
+
+# A tag such as v0.1.0 builds the plugin's zip, attests where it was built and publishes a GitHub
+# Release with it, so the provenance tool has provenance of its own (spec: Distribution).
+# Releases are the user's call: tag only when asked.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+# Actions are pinned to commit SHAs, as in ci.yml.
+jobs:
+  release:
+    name: Build, attest and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write # create the release
+      id-token: write # sign the attestation
+      attestations: write # store it
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          python-version: "3.10"
+      - name: The tag names this checkout's version
+        run: |
+          version="$(uv run --locked python -c 'import sys; sys.path.insert(0, "scripts"); import build_release; print(build_release.version())')"
+          if [ "v${version}" != "${GITHUB_REF_NAME}" ]; then
+            echo "::error::Tag ${GITHUB_REF_NAME} doesn't match the plugin's version, ${version}"
+            exit 1
+          fi
+          if [ ! -f "docs/release-notes/${GITHUB_REF_NAME}.md" ]; then
+            echo "::error::docs/release-notes/${GITHUB_REF_NAME}.md is missing"
+            exit 1
+          fi
+          echo "VERSION=${version}" >> "${GITHUB_ENV}"
+      - name: Test
+        run: uv run --locked pytest
+      - name: Build the zip
+        run: uv run --locked python scripts/build_release.py
+      - name: Attest where the zip was built
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: dist/krita-provenance-${{ env.VERSION }}.zip
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          zip="dist/krita-provenance-${VERSION}.zip"
+          notes="${RUNNER_TEMP}/notes.md"
+          {
+            cat "docs/release-notes/${GITHUB_REF_NAME}.md"
+            echo
+            echo "## Checking the download"
+            echo
+            echo "SHA-256 of \`krita-provenance-${VERSION}.zip\`: \`$(sha256sum "${zip}" | cut -d ' ' -f 1)\`"
+            echo
+            echo "GitHub attests that this repository's release workflow built the zip from this tag. To check: \`gh attestation verify krita-provenance-${VERSION}.zip --repo ${GITHUB_REPOSITORY}\`"
+          } > "${notes}"
+          gh release create "${GITHUB_REF_NAME}" "${zip}" --repo "${GITHUB_REPOSITORY}" \
+            --title "krita-provenance ${VERSION}" --notes-file "${notes}" --verify-tag
