@@ -4,7 +4,7 @@ A manifest from this plugin states what it observed on the signer's machine; it 
 work is human-made. See README.md for what a manifest does and does not show.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0.dev0"
 
 import importlib.util
 
