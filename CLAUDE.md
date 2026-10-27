@@ -361,7 +361,11 @@ test modules.
   runs the tests, builds the zip, attests its build provenance and publishes the GitHub Release
   with the zip, its SHA-256 and how to verify the attestation. Right after the tag the version
   moves on to `0.2.0.dev0`, so nothing built from later work claims to be 0.1.0. Releases stay
-  the user's call.
+  the user's call. Verified 27 Oct 2026: the workflow passed and published
+  https://github.com/KableMorrill/krita-provenance/releases/tag/v0.1.0 with
+  `krita-provenance-0.1.0.zip` (78,159 bytes, SHA-256 `5130d4af…ed423338`), and the attestation
+  is on record. The published zip is byte-identical to a local Windows build of the same
+  commit: the build reproduces across machines.
 - **Next: M2, one piece at a time, in the user's order** (27 Oct 2026): (1) reading credentials
   from opened and placed images (C6, P2), (2) disclosure levels (D2 to D4), (3) bring-your-own
   certificates (K2), (4) timestamps (K3), (5) the AI-use report (R1 to R3). LinkedIn posts
@@ -723,6 +727,17 @@ user's files, kept out of the repo):
   only the URL. sdk.py has done so for every call since 18 Oct 2026 (fifth set).
 - An export of a document opened from an image embeds a thumbnail of that image
   (`c2pa.thumbnail.ingredient`); Verify's "Show sources" shows it (smoke row 27).
+- Checked 27 Oct 2026 for M2 (scratch scripts, test certificate): `Builder.write_ingredient_archive`
+  (instance id, stream) and `add_ingredient_from_archive(stream)` carry one ingredient between
+  builders. Google's image, archived (about 94 KB, thumbnail included) and restored into another
+  export, kept its manifest, and the export validated. An ingredient JSON with
+  `"manifest_data": {"format": "application/c2pa", "identifier": X}` plus
+  `builder.add_resource(X, <the fetched store>)` attaches a manifest fetched separately: with the
+  Firefly fill image as parent, the export carried Adobe's whole chain (seven manifests, S36's at
+  its root) and validated. That ingredient still lists `manifest.inaccessible` ("Remote manifest
+  not fetched") from reading the image's link, although the manifest is there; settle that when
+  building C6. c2pa-rs's own fetch can't reach Adobe on the user's machine (rustls doesn't use the
+  Windows certificate store), so a fetch has to go through Python's urllib, as I2's downloads do.
 
 **Windows paths** (14 Oct 2026): unpacking cryptography failed with "No such file or
 directory" when the data folder sat about 150 characters deep, because a staged file's path
