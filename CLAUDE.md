@@ -15,8 +15,8 @@ scope, the log format, the C2PA mapping, the threat model and the milestones. Re
 ## Handover (13 Oct 2026, from the Fable session, updated by the Opus session)
 
 Read this first, then "Where things stand". Branch `claude/eloquent-hypatia-vzwd8l`, pushed at
-the user's request on 14, 15, 16, 18 and 19 Oct 2026 and merged into `main` on 19 Oct 2026 (CI
-green through `2b62535`; check the run for later pushes). From `c86d349` on, work happens in the user's Windows 11 checkout (Python 3.12 venv,
+the user's request on 14, 15, 16, 18, 19 and 27 Oct 2026, and merged into `main` on 19 and
+27 Oct 2026 (CI green through `15aad10`; check the run for later pushes). From `c86d349` on, work happens in the user's Windows 11 checkout (Python 3.12 venv,
 no c2patool), where all four checks pass.
 
 Results in (13 Oct 2026, Opus session): smoke rows 1 to 8 pass on Windows 11 (S1's Python
@@ -329,12 +329,13 @@ test modules.
   so `main` now holds the plugin. (4) The live Claude Doc got this week's spec edits on 19 Oct
   2026 (revision 22): `read_back` in the log example and its bullet, Q1 settled and ticked, and
   the finished "This week" items ticked.
-- **Go/no-go note:** drafted in [docs/go-no-go.md](docs/go-no-go.md) on 18 Oct 2026; final
-  once S5 runs. Recommendation: go.
+- **Go/no-go: go** (the user's call, 27 Oct 2026, two days past the self-set 25 Oct date, which
+  was there to keep the effort steady). [docs/go-no-go.md](docs/go-no-go.md) is final, and M0
+  is closed. The demo went live on the user's LinkedIn on 27 Oct 2026, 10 am Pacific time.
 - **Not done:** S1 inside Krita on Linux (as v1.0 approaches) and macOS (by users' reports).
   **S1 passes on Windows** (15 Oct 2026): Python 3.13.5, and c2pa-python loads and signs
   inside Krita; macOS and Linux are unchecked. **S3 passes** (16 Oct 2026, smoke rows 18 to 20).
-  S5 hasn't run. **S2 passes** (16 Oct 2026): Verify reads the polygon samples and shows
+  **S5 passes** (18 Oct 2026, with Firefly standing in for Photoshop; above). **S2 passes** (16 Oct 2026): Verify reads the polygon samples and shows
   their actions (created with krita-provenance, Krita AI Diffusion as the AI model, edited
   with AI). History: **S2's Adobe check passes for a
   minimal manifest** (14 Oct 2026). Adobe's Verify (verify.contentauthenticity.org), which
@@ -354,8 +355,9 @@ test modules.
   regenerated, and all five samples read Valid in c2pa-rs 0.85.1 with every action. On 16 Oct
   the user uploaded them to Verify: no errors, and the actions show. The go/no-go note is due
   25 Oct 2026.
-- **Next:** the go/no-go call (25 Oct 2026); the user's LinkedIn posts, demo first (Claude may
-  draft them; never posts); then M2.
+- **Next:** M2, in the order the user chooses (spec: Milestones; C4 to C6, P2, D2 to D4, R1 to
+  R3, V2, V3, K2, K3, I3). Tagging and publishing v0.1 is the user's, whenever they want it.
+  LinkedIn posts continue (Claude may draft them; never posts).
 
 ## Layout
 
@@ -391,7 +393,7 @@ tests/fixtures/certs/      test root CA and signing certificate; never sign anyt
 tests/fixtures/images/     16x16 PNG and JPEG placeholders and a .kra-shaped zip for ingredients
 docs/spec.md               the project spec
 docs/smoke-checklist.md    checks the user runs inside Krita
-docs/go-no-go.md           the go/no-go note that closes M0 (draft until S5 runs)
+docs/go-no-go.md           the go/no-go note that closed M0 (final: go, 27 Oct 2026)
 .github/workflows/ci.yml   CI on every push
 ```
 

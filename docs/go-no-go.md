@@ -1,11 +1,12 @@
 # Go/no-go note: M0 spikes
 
-Draft, 18 October 2026, due 25 October 2026. Final once the go/no-go call is made.
+Written 18 October 2026. Final 27 October 2026, when the owner made the call, two days after
+the self-set date of 25 October.
 
-**Recommendation: go.** All five spikes pass: S1 on Windows only, with a workaround for macOS
-and Linux, and S5 with Firefly standing in for Photoshop. M1's scope (v0.1) is already built and
-checked inside Krita on Windows. M1's exit gate is met, except the Krita AI Diffusion issue,
-which the owner has moved to after v1.0.
+**Decision: go** (the owner, 27 Oct 2026), as recommended. All five spikes pass: S1 on Windows
+only, with a workaround for macOS and Linux, and S5 with Firefly standing in for Photoshop. M1's
+scope (v0.1) is already built and checked inside Krita on Windows. M1's exit gate is met, except
+the Krita AI Diffusion issue, which the owner has moved to after v1.0.
 
 ## Spikes
 
@@ -101,6 +102,7 @@ Q5 (keys in the data folder) and Q6 (GPL-3.0-or-later is compatible) are decided
 (Krita 6), Q8 (model identity), Q9 (reference images and prompts as ingredients) and Q11
 (`c2pa.ai-disclosure`) stay open for M2.
 
-## To finish M0
+## Outcome
 
-1. The go/no-go decision. S1's workaround for macOS and Linux is accepted (above).
+M0 is closed with a go, and S1's workaround for macOS and Linux is accepted (above). The demo
+went live on the owner's LinkedIn on 27 Oct 2026. M2's scope comes next (spec: Milestones).
